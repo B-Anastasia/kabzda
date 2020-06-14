@@ -27,12 +27,8 @@ type IstarPropsType={
 
 function Star({selected,onStar}: IstarPropsType) {
     console.log('Star');
-    if(selected){
-        return <span className={'span'} onClick={onStar}><b>star</b> </span>
-    }
-    return(
-        <span className={'span'} onClick={onStar}>star </span>
-    )
+    let star = (selected)? <b>star </b> : `star `;
+    return <span className={'span'} onClick={onStar}>{star}</span>
 }
 
 export default UncontrolledRating;
