@@ -4,29 +4,30 @@ export type IRatingValue = 0 | 1 | 2 | 3 | 4 | 5;
 
 type IratingPropsType = {
   value: IRatingValue;
-  onStar: (value: IRatingValue) => () => void;
+  onClick: (value: IRatingValue) => void;
 };
 
-function Rating({ value, onStar }: IratingPropsType) {
+function Rating({ value, onClick }: IratingPropsType) {
   return (
     <div>
-      <Star selected={value > 0} onStar={onStar(1)} />
-      <Star selected={value > 1} onStar={onStar(2)} />
-      <Star selected={value > 2} onStar={onStar(3)} />
-      <Star selected={value > 3} onStar={onStar(4)} />
-      <Star selected={value > 4} onStar={onStar(5)} />
+      <Star selected={value > 0} onClick={onClick} value={1} />
+      <Star selected={value > 1} onClick={onClick} value={2} />
+      <Star selected={value > 2} onClick={onClick} value={3} />
+      <Star selected={value > 3} onClick={onClick} value={4} />
+      <Star selected={value > 4} onClick={onClick} value={5} />
     </div>
   );
 }
 type IstarPropsType = {
   selected: boolean;
-  onStar: () => void;
+  onClick: (value: IRatingValue) => void;
+  value: IRatingValue;
 };
 
-function Star({ selected, onStar }: IstarPropsType) {
+function Star({ selected, onClick, value }: IstarPropsType) {
   console.log("Star");
   return (
-    <span className={"span"} onClick={onStar}>
+    <span className={"span"} onClick={() => onClick(value)}>
       {selected ? <b>star </b> : `star `}
     </span>
   );
