@@ -5,7 +5,7 @@ type IOnOffPropsType = {
   onActive: (on: boolean) => void;
 };
 
-function OnOff({ active, onActive }: IOnOffPropsType) {
+export function OnOff({ active, onActive }: IOnOffPropsType) {
   //controlled , from props it is active or not
   console.log("OnOff rendering");
 
@@ -49,5 +49,3 @@ function OnOff({ active, onActive }: IOnOffPropsType) {
     </div>
   );
 }
-
-export default OnOff;
