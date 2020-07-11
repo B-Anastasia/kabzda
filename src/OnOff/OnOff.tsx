@@ -2,12 +2,14 @@ import React from "react";
 
 type IOnOffPropsType = {
   active: boolean;
-  onActive: () => void;
+  onActive: (on: boolean) => void;
 };
 
 function OnOff({ active, onActive }: IOnOffPropsType) {
+  //controlled , from props it is active or not
   console.log("OnOff rendering");
 
+  //change color buttons by styles active true or not?
   const onStyle = {
     height: "30px",
     width: "30px",
@@ -37,10 +39,10 @@ function OnOff({ active, onActive }: IOnOffPropsType) {
 
   return (
     <div>
-      <div style={onStyle} onClick={onActive}>
+      <div style={onStyle} onClick={() => onActive(true)}>
         On
       </div>
-      <div style={offStyle} onClick={onActive}>
+      <div style={offStyle} onClick={() => onActive(false)}>
         Off
       </div>
       <div style={indicatorStyle} />
