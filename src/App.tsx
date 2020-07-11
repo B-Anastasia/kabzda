@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 import Rating, { IRatingValue } from "./Rating/Rating";
-// import Accordion from "./Accordion/Accordion";
-import Accordion from "./Accordion/Accordion";
-import UncontrolledAccordion from "./UncontrolledAccordion/UncontrolledAccordion";
-import UncontrolledOnOff from "./UncontrolledOnOff/UncontrolledOnOff";
-import UncontrolledRating from "./UncontrolledRating/UncontrolledRating";
-import {OnOff} from "./OnOff/OnOff";
+import { OnOff } from "./OnOff/OnOff";
+import { UncontrolledOnOff } from "./UncontrolledOnOff/UncontrolledOnOff";
+import { UncontrolledRating } from "./UncontrolledRating/UncontrolledRating";
 
 function App() {
   let [ratingValue, setRatingValue] = useState<IRatingValue>(0);
@@ -14,7 +11,6 @@ function App() {
   let [active, setActive] = useState<boolean>(false);
   let [on, setOn] = useState<boolean>(false);
 
-  const onStar = (value: IRatingValue) => () => setRatingValue(value);
   const onChange = () => setHidden(!hidden);
   const onActive = (on: boolean) => {
     setActive(on);
@@ -27,7 +23,7 @@ function App() {
       {/*<UncontrolledAccordion title={"Not controlled"} />*/}
       {/*<Accordion title={"New"} hidden={hidden} onCollapsed={onChange} />*/}
       <Rating value={ratingValue} onClick={setRatingValue} />
-      <UncontrolledRating />
+      <UncontrolledRating onChange={setRatingValue} defaultValue={ratingValue}/>
 
       {/*Title 2
 
@@ -35,7 +31,7 @@ function App() {
         <OnOff />*/}
       <OnOff active={active} onActive={onActive} />
       {/*on change local state App component will know*/}
-      <UncontrolledOnOff onChange={setOn} />
+      <UncontrolledOnOff onChange={setOn} defaultValue={false} />
       {on.toString()}
     </div>
   );

@@ -8,7 +8,7 @@ type IaccordionTitlePropsType = {
 function AccordionTitle({ title, onCollapsed }: IaccordionTitlePropsType) {
   console.log("AccordionTitle");
   return (
-    <h3 className={"title"} onClick={onCollapsed}>
+    <h3 className={"title"} onClick={() => onCollapsed()}>
       {title}
     </h3>
   );

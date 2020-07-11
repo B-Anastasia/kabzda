@@ -2,13 +2,13 @@ import React from "react";
 import AccordionTitle from "./AccordionTitle/AccordionTitle";
 import AccordionBody from "./AccordionBody/AccordionBody";
 
-export type IaccordionPropsType = {
+export type IAccordionPropsType = {
   title: string;
   hidden: boolean;
   onCollapsed: () => void;
 };
 
-function Accordion({ title, hidden, onCollapsed }: IaccordionPropsType) {
+export function Accordion({ title, hidden, onCollapsed }: IAccordionPropsType) {
   console.log("UncontrolledAccordion");
 
   return (
@@ -18,5 +18,3 @@ function Accordion({ title, hidden, onCollapsed }: IaccordionPropsType) {
     </div>
   );
 }
-
-export default Accordion;

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 
 type PropsType = {
   onChange: (on: boolean) => void;
+  defaultValue: boolean;
 };
 
-function UncontrolledOnOff(props: PropsType) {
+export function UncontrolledOnOff(props: PropsType) {
   console.log("OnOff rendering");
 
-  let [on, setOn] = useState<boolean>(false);
+  let [on, setOn] = useState<boolean>(props.defaultValue);
 
   const onStyle = {
     height: "30px",
@@ -58,5 +59,3 @@ function UncontrolledOnOff(props: PropsType) {
     </div>
   );
 }
-
-export default UncontrolledOnOff;
