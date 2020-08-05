@@ -4,15 +4,24 @@ import AccordionBody from "./AccordionBody/AccordionBody";
 
 export type IaccordionPropsType = {
   title: string;
+  onChange?: (hidden: boolean) => void;
+  defaultValue?: boolean;
 };
 
-export function UncontrolledAccordion({ title }: IaccordionPropsType) {
+export function UncontrolledAccordion({
+  title,
+  onChange,
+  defaultValue,
+}: IaccordionPropsType) {
   console.log("Accordion");
 
-  let [hidden, setHidden] = useState<boolean>(false);
+  let [hidden, setHidden] = useState<boolean>(
+    defaultValue ? defaultValue : false
+  );
 
   const onChangeHidden = () => {
     setHidden(!hidden);
+    onChange && onChange(hidden);
   };
   return (
     <div>
