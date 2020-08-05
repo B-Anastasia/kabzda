@@ -10,6 +10,7 @@ export default {
 
 const callback = action("Menu was changed");
 
+
 export const Collapsed = () => <UncontrolledAccordion title={"Menu"} />;
 export const CollapsedByDefault = () => (
   <UncontrolledAccordion
