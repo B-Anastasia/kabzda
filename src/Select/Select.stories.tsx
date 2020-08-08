@@ -13,15 +13,28 @@ const family: ItemsType[] = [
   { value: "03", title: "Vladimir" },
 ];
 
-export const SelectMode = () => {
-  const [title, setTitle] = useState("");
+export const SelectWithoutValue = () => {
+  const [value, setValue] = useState<string | null>(null);
+
+  const onChangeItem = (value: string) => {
+    setValue(value);
+  };
+
+  return <Select items={family} onChangeItem={onChangeItem} value={value} />;
+};
+
+export const SelectWithValue = () => {
+  const [value, setValue] = useState("02");
+
+  return <Select items={family} onChangeItem={setValue} value={value} />;
+};
+
+export const SelectWithValueAndToggle = () => {
+  const [value, setValue] = useState("02");
   const [toggle, setToggle] = useState(false);
 
   const onChangeItem = (value: string) => {
-    const person = family.find((i) => i.value === value);
-    if (person) {
-      setTitle(person.title);
-    }
+    setValue(value);
   };
 
   const onToggle = (value: boolean) => {
@@ -31,8 +44,8 @@ export const SelectMode = () => {
   return (
     <Select
       items={family}
-      onClick={onChangeItem}
-      title={title}
+      onChangeItem={onChangeItem}
+      value={value}
       toggle={toggle}
       onClickToggle={onToggle}
     />
