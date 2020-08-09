@@ -27,7 +27,7 @@ $main-color: gray;
     }
   }
   .block{
-    top: 0;
+    //top: 0; //on the top of selected element
     background-color: white;
     z-index: 10;
     position: absolute;

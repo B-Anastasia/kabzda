@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent } from "react";
+import React, { useState, KeyboardEvent, useEffect } from "react";
 import scss from "./Select.module.scss";
 import { ItemsType } from "../Accordion/Accordion";
 
@@ -30,34 +30,42 @@ function Select(props: SelectType) {
     props.onClickToggle ? props.onClickToggle(false) : setToggle(false);
   };
 
-  let index = hoveredItem ? props.items.indexOf(hoveredItem) : undefined;
+  /*let index = hoveredItem ? props.items.indexOf(hoveredItem) : undefined;
 
-  const onKeyPressHanler = (e: KeyboardEvent<HTMLDivElement>) => {
+  const onKeyPressHanlerHover = (e: KeyboardEvent<HTMLDivElement>) => {
+    //if we want to choose an item by pressing 'Enter' key
     if (e.keyCode === 13) {
       if (hoveredItem) {
         onClickItem(hoveredItem.value);
       }
     }
+
+    /!*    if we want to hover an item by pressing 'Up' and 'Down' arrow keys
+    if list will be ended the list will be started again
+    if list will be started from thq first element ,
+    by pressing 'Up' key will be hovered latest item of the list*!/
+
     if (e.keyCode === 40 || e.keyCode === 38) {
       for (
         let i = index !== undefined ? index : 0;
         i < props.items.length;
         i++
       ) {
+        //Arrow key 'Down'
         if (e.keyCode === 40) {
-          console.log("down");
           if (index === undefined) {
             setHoveredElValue(props.items[0].value);
+            // props.onClick(props.items[0].value);
             break;
           }
           if (i === props.items.length - 1) {
             setHoveredElValue(props.items[0].value);
             break;
           }
-          console.log(props.items[i].value);
           setHoveredElValue(props.items[i + 1].value);
           break;
         }
+        //Arrow key 'Up'
         if (e.keyCode === 38) {
           if (i === 0) {
             setHoveredElValue(props.items[props.items.length - 1].value);
@@ -65,6 +73,37 @@ function Select(props: SelectType) {
           }
           setHoveredElValue(props.items[i - 1].value);
           break;
+        }
+      }
+    }
+  };*/
+
+  useEffect(() => {
+    setHoveredElValue(props.value);
+  }, [props.value]);
+
+  const onKeyPressHanler = (e: KeyboardEvent<HTMLDivElement>) => {
+    //if we want to choose an item by pressing 'Enter' key
+    if (e.keyCode === 13 || e.keyCode === 27) {
+      onBlurToggleOff();
+    }
+
+    /*    if we want to hover an item by pressing 'Up' and 'Down' arrow keys
+        and choose it*/
+
+    if (e.keyCode === 40 || e.keyCode === 38) {
+      for (let i = 0; i < props.items.length; i++) {
+        if (hoveredElValue === null) {
+          props.onClick(props.items[0].value);
+        }
+        if (props.items[i].value === hoveredElValue) {
+          let nextItem =
+            e.keyCode === 40 ? props.items[i + 1] : props.items[i - 1];
+          if (nextItem) {
+            console.log(nextItem);
+            props.onClick(nextItem.value);
+            break;
+          }
         }
       }
     }
