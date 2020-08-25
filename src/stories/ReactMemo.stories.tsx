@@ -4,15 +4,15 @@ export default {
   title: "React memo demo",
 };
 
-type INewMessageCount = {
+export type INewMessageCount = {
   count: number;
 };
 
-type IUsersType = {
+export type IUsersType = {
   users: Array<string>;
 };
 
-const NewMessageCount = (props: INewMessageCount) => {
+export const NewMessageCount = (props: INewMessageCount) => {
   console.log("NewMessageCount");
   return <div>{props.count}</div>;
 };
@@ -27,7 +27,7 @@ const Users = (props: IUsersType) => {
 
 export const ExampleWithoutMemo = () => {
   console.log("ExampleWithoutMemo");
-  const [users, setUsers] = useState(["Dasha", "Masha", "Sasha"]);
+  const [users] = useState(["Dasha", "Masha", "Sasha"]);
   const [count, setCount] = useState(0);
   return (
     <>
@@ -43,7 +43,7 @@ const CountMemo = React.memo(NewMessageCount);
 
 export const ExampleMemoUsers = () => {
   console.log("ExampleWithoutMemo");
-  const [users, setUsers] = useState(["Dasha", "Masha", "Sasha"]);
+  const [users] = useState(["Dasha", "Masha", "Sasha"]);
   const [count, setCount] = useState(0);
   return (
     <>
