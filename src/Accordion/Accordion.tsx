@@ -5,6 +5,8 @@ import AccordionBody from "./AccordionBody/AccordionBody";
 export type ItemsType = {
   value: string;
   title: string;
+  population?: number;
+  countryId?: number;
 };
 
 export type IAccordionPropsType = {

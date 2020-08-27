@@ -20,13 +20,13 @@ export const SelectWithoutValue = () => {
     setValue(value);
   };
 
-  return <Select items={family} onChangeItem={onChangeItem} value={value} />;
+  return <Select items={family} onClick={onChangeItem} value={value} />;
 };
 
 export const SelectWithValue = () => {
   const [value, setValue] = useState("02");
 
-  return <Select items={family} onChangeItem={setValue} value={value} />;
+  return <Select items={family} onClick={setValue} value={value} />;
 };
 
 export const SelectWithValueAndToggle = () => {
@@ -44,7 +44,7 @@ export const SelectWithValueAndToggle = () => {
   return (
     <Select
       items={family}
-      onChangeItem={onChangeItem}
+      onClick={onChangeItem}
       value={value}
       toggle={toggle}
       onClickToggle={onToggle}

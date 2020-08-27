@@ -4,13 +4,14 @@ import { ItemsType } from "../Accordion/Accordion";
 
 export type SelectType = {
   items: ItemsType[];
-  onClick: (value: string) => void;
+  onClick?: (value: string) => void;
   value?: string | null;
   toggle?: boolean;
   onClickToggle?: (value: boolean) => void;
 };
 
-function Select(props: SelectType) {
+const Select = React.memo((props: SelectType) => {
+  console.log("Select");
   const [toggle, setToggle] = useState(false);
   const [hoveredElValue, setHoveredElValue] = useState(props.value);
 
@@ -26,7 +27,7 @@ function Select(props: SelectType) {
   const hoveredItem = props.items.find((i) => i.value === hoveredElValue);
 
   const onClickItem = (value: string) => {
-    props.onClick(value);
+    props.onClick && props.onClick(value);
     props.onClickToggle ? props.onClickToggle(false) : setToggle(false);
   };
 
@@ -94,14 +95,14 @@ function Select(props: SelectType) {
     if (e.keyCode === 40 || e.keyCode === 38) {
       for (let i = 0; i < props.items.length; i++) {
         if (hoveredElValue === null) {
-          props.onClick(props.items[0].value);
+          props.onClick && props.onClick(props.items[0].value);
         }
         if (props.items[i].value === hoveredElValue) {
           let nextItem =
             e.keyCode === 40 ? props.items[i + 1] : props.items[i - 1];
           if (nextItem) {
             console.log(nextItem);
-            props.onClick(nextItem.value);
+            props.onClick && props.onClick(nextItem.value);
             break;
           }
         }
@@ -141,6 +142,6 @@ function Select(props: SelectType) {
       )}
     </div>
   );
-}
+});
 
 export default Select;
